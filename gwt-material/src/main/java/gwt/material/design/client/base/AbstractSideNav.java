@@ -25,6 +25,8 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.i18n.client.LocaleInfo;
+import com.google.gwt.thirdparty.common.css.compiler.ast.GssParserCC;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -175,17 +177,25 @@ public abstract class AbstractSideNav extends MaterialWidget implements JsLoader
 
     protected void pushElement(Element element, int value) {
         applyTransition($(element).asElement());
-        if (getEdge() == Edge.RIGHT) {
-            $(element).css("paddingRight", value + "px");
+
+        // Flip the edge if the current local is RTL.
+        if (getEffectiveEdge() == Edge.RIGHT) {
+//            $(element).asElement().getStyle().setPaddingRight(value, Style.Unit.PX);
+            $(element).css("padding-right", value + "px");
+
         } else {
-            $(element).css("paddingLeft", value + "px");
+            $(element).css("padding-left", value + "px");
+
+//            $(element).asElement().getStyle().setPaddingLeft(value, Style.Unit.PX);
         }
+
 
     }
 
     protected void pushElementMargin(Element element, int value) {
         applyTransition($(element).asElement());
-        if (getEdge() == Edge.LEFT) {
+
+        if (getEffectiveEdge() == Edge.LEFT) {
             $(element).css("margin-left", value + "px");
         } else {
             $(element).css("margin-right", value + "px");
@@ -248,6 +258,13 @@ public abstract class AbstractSideNav extends MaterialWidget implements JsLoader
         load(false);
     }
 
+    protected Edge getEffectiveEdge() {
+        return  (LocaleInfo.getCurrentLocale().isRTL()
+                ? (getEdge() == Edge.LEFT ? Edge.RIGHT : Edge.LEFT)
+                : getEdge());
+
+    }
+
     protected void load(boolean strict) {
         try {
             activator = DOMHelper.getElementByAttribute("data-activates", getId());
@@ -270,7 +287,7 @@ public abstract class AbstractSideNav extends MaterialWidget implements JsLoader
 
         JsSideNavOptions options = new JsSideNavOptions();
         options.menuWidth = width;
-        options.edge = edge != null ? edge.getCssName() : null;
+        options.edge = getEffectiveEdge() != null ? getEffectiveEdge().getCssName() : null;
         options.closeOnClick = closeOnClick;
 
         JsMaterialElement element = $(activator);

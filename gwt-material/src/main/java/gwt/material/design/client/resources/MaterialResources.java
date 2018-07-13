@@ -20,15 +20,87 @@
 package gwt.material.design.client.resources;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.editor.client.Editor;
 import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.CssResource;
+import com.google.gwt.resources.client.DataResource;
 import com.google.gwt.resources.client.TextResource;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
+import javax.swing.text.html.StyleSheet;
 
 public interface MaterialResources extends ClientBundle {
     MaterialResources INSTANCE = GWT.create(MaterialResources.class);
 
-    @Source("js/animation.min.js")
+    @Source("fonts/roboto/Roboto-Bold.woff")
+    DataResource robotoBoldWoff();
+    @Source("fonts/roboto/Roboto-Bold.ttf")
+    DataResource robotoBoldTtf();
+    @Source("fonts/roboto/Roboto-Bold.woff2")
+    DataResource robotoBoldWoff2();
+
+    @Source("fonts/roboto/Roboto-Light.woff")
+    DataResource robotoLightWoff();
+    @Source("fonts/roboto/Roboto-Light.ttf")
+    DataResource robotoLightTtf();
+    @Source("fonts/roboto/Roboto-Light.woff2")
+    DataResource robotoLightWoff2();
+
+    @Source("fonts/roboto/Roboto-Medium.woff")
+    DataResource robotoMediumWoff();
+    @Source("fonts/roboto/Roboto-Medium.ttf")
+    DataResource robotoMediumTtf();
+    @Source("fonts/roboto/Roboto-Medium.woff2")
+    DataResource robotoMediumWoff2();
+
+    @Source("fonts/roboto/Roboto-Regular.woff")
+    DataResource robotoRegularWoff();
+    @Source("fonts/roboto/Roboto-Regular.ttf")
+    DataResource robotoRegularTtf();
+    @Source("fonts/roboto/Roboto-Regular.woff2")
+    DataResource robotoRegularWoff2();
+
+    @Source("fonts/roboto/Roboto-Thin.woff")
+    DataResource robotoThinWoff();
+    @Source("fonts/roboto/Roboto-Thin.ttf")
+    DataResource robotoThinTtf();
+    @Source("fonts/roboto/Roboto-Thin.woff2")
+    DataResource robotoThinWoff2();
+
+    @Source("fonts/material-icons/MaterialIcons-Regular.woff")
+    DataResource materialIconsWoff();
+    @Source("fonts/material-icons/MaterialIcons-Regular.ttf")
+    DataResource materialIconsTtf();
+    @Source("fonts/material-icons/MaterialIcons-Regular.eot")
+    DataResource materialIconsEot();
+    @Source("fonts/material-icons/MaterialIcons-Regular.woff2")
+    DataResource materialIconsWoff2();
+    @Source("fonts/material-icons/MaterialIcons-Regular.ijmap")
+    DataResource materialIconsIjmap();
+
+    @Source("js/animation.js")
     TextResource animationJs();
 
-    @Source("js/materialize-0.97.5.min.js")
+    @Source("js/materialize.js")
     TextResource materializeJs();
+
+    @Source("css/materialize.gss")
+    @CssResource.NotStrict
+    CssResource materialize();
+
+    @Source("css/overridecss.gss")
+    @CssResource.NotStrict
+    CssResource overridecss();
+
+    @Source("css/animation.gss")
+    @CssResource.NotStrict
+    CssResource animation();
+
+    interface FontsResource extends CssResource {
+
+    }
+
+    @Source("css/fonts.gss")
+    @CssResource.NotStrict
+    FontsResource fonts();
 }

@@ -100,7 +100,7 @@ public class MaterialLoader {
     public void show() {
         if (!(container instanceof RootPanel)) {
             container.getElement().getStyle().setPosition(Style.Position.RELATIVE);
-            div.getElement().getStyle().setPosition(Style.Position.ABSOLUTE);
+//            div.getElement().getStyle().setPosition(Style.Position.ABSOLUTE);
         }
         if (scrollDisabled) {
             RootPanel.get().getElement().getStyle().setOverflow(Style.Overflow.HIDDEN);

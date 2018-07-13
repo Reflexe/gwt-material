@@ -47,6 +47,13 @@ public abstract class JQueryProvider {
         }
     }
 
+    public static class JQueryNo extends JQueryProvider {
+        @Override
+        public TextResource jQuery() {
+            return null;
+        }
+    }
+
     public static class JQueryCompressed extends JQueryProvider {
         private WithJQueryResources resources;
 

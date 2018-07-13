@@ -27,7 +27,4 @@
     "http://gwtproject.org/doctype/2.8.0/gwt-module.dtd">
 <module>
   <inherits name="gwt.material.design.ResourcesBasic"/>
-
-  <stylesheet src="css/materialize.min.css"/>
-  <stylesheet src="css/overridecss.css"/>
 </module>

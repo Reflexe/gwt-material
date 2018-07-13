@@ -21,6 +21,13 @@ package gwt.material.design.client.ui;
 
 import com.google.gwt.user.client.ui.TextBox;
 import gwt.material.design.client.constants.InputType;
+import gwt.material.design.client.js.JsMaterialElement;
+import gwt.material.design.jquery.client.api.JQuery;
+import gwt.material.design.jscore.client.api.JsObject;
+
+import java.util.Map;
+
+import static gwt.material.design.client.js.JsMaterialElement.$;
 
 //@formatter:off
 
@@ -39,6 +46,7 @@ import gwt.material.design.client.constants.InputType;
  */
 //@formatter:on
 public class MaterialTextBox extends MaterialValueBox<String> {
+    boolean autoComplete = false;
 
     public MaterialTextBox() {
         super(new TextBox());
@@ -49,6 +57,18 @@ public class MaterialTextBox extends MaterialValueBox<String> {
         this();
         setPlaceholder(placeholder);
     }
+
+    @Override
+    protected void onLoad() {
+        super.onLoad();
+
+        JsMaterialElement element = $(valueBoxBase.getElement());
+
+        element.autocomplete(new JsMaterialElement.JsAutoCompleteOptions());
+
+
+    }
+
 
     public void setMaxLength(int length) {
         asTextBox().setMaxLength(length);
@@ -65,6 +85,25 @@ public class MaterialTextBox extends MaterialValueBox<String> {
     public int getVisibleLength() {
         return asTextBox().getVisibleLength();
     }
+
+    public void setAutocomplete(boolean a) {
+        boolean autoComplete = true;
+
+
+    }
+
+    public void updateAutocompleteData(Map<String, String> data) {
+        JsMaterialElement element = $(valueBoxBase.getElement());
+
+        JsObject obj = new JsObject();
+        for (Map.Entry<String, String> entry : data.entrySet()) {
+            JQuery.$(obj).attr (entry.getKey(), entry.getValue());
+        }
+
+        element.autocomplete("updateData", obj);
+    }
+
+
 
     @Ignore
     public TextBox asTextBox() {

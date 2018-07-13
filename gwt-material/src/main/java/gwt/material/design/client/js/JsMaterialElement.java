@@ -24,10 +24,14 @@ import com.google.gwt.core.client.JsDate;
 import com.google.gwt.dom.client.Element;
 import gwt.material.design.jquery.client.api.Functions;
 import gwt.material.design.jquery.client.api.JQueryElement;
+import gwt.material.design.jscore.client.api.JsObject;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
+
+import javax.annotation.Nullable;
+import java.util.Map;
 
 /**
  * JSInterop utils for Materialize component
@@ -246,4 +250,23 @@ public class JsMaterialElement extends JQueryElement {
      */
     @JsMethod
     public native JsMaterialElement characterCounter();
+
+
+    @JsType(isNative = true, name = "Object", namespace = JsPackage.GLOBAL)
+    public static class JsAutoCompleteOptions {
+
+    }
+
+    @JsType(isNative = true, name = "Object", namespace = JsPackage.GLOBAL)
+    public static class JsAutoCompleteInstance {
+        public native void updateData(Object dataToImage);
+    }
+
+
+    @JsMethod
+    public native void autocomplete(JsAutoCompleteOptions options);
+
+
+    @JsMethod
+    public native void autocomplete(String method, Object params);
 }

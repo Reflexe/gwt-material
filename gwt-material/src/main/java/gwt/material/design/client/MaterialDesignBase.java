@@ -42,15 +42,22 @@ public class MaterialDesignBase {
         }
     }
 
-    static final JQueryProvider jQueryProvider = GWT.create(JQueryProvider.class);
+    static final JQueryProvider jQueryProvider = GWT.create(JQueryProvider.JQueryCompressed.class);
     static List<FutureResource> futureResources;
     static boolean jqueryWarning;
 
     protected void load() {
         checkJQuery(false);
         if(!isMaterializeLoaded()) {
+
             injectJs(MaterialResources.INSTANCE.materializeJs());
             injectJs(MaterialResources.INSTANCE.animationJs());
+
+//            MaterialResources.INSTANCE.materialize().ensureInjected();
+            MaterialResources.INSTANCE.animation().ensureInjected();
+            MaterialResources.INSTANCE.overridecss().ensureInjected();
+            MaterialResources.INSTANCE.fonts().ensureInjected();
+
         }
         onModuleLoaded();
     }
